@@ -1,0 +1,49 @@
+
+Struktur database sebelumnya.
+
+database: Ebooks > author, chapter, title, image, genres.
+database: Consums > userhanem, fullname, email, password, image.
+
+-------------------------------------------------------------------------------------------------------------
+
+Melakukan perubahaan struktur database (Cara Pertama).
+
+name "author" dapat dari "fullname".
+
+"chapter", "title" dapat dari ketika penulisan cerita.
+
+jadi di dalam database 'Ebooks' seharusnya > author = string, judulBuku = string, image = string, books = [{chapter: 1, title: Lorem, text/cerita: doloro sit amet}];
+
+kekurangan: 1. akan kesulitan membuat buku pada user yang sama.
+			2. Walaupun bisa, di database Ebooks akan memiliki author yang sama, namun dengan judul berbeda.
+			3. Terlalu boros dalam pemakaian database
+
+------------------------------------------
+
+Melakukan perubahaan struktur database (Cara Kedua).
+
+database: Consums > fullname = string, username = string, email = string, password = string, image = string, books = [{judulBuku:[{title: Lorem, chapter: 1, text/cerita: doloro}], coverImage: "test.jpg" }]
+
+kekurangan: 1. memiliki struktur pada books yang cukup sulit.
+			2. akan sulit untuk melakukan CRUD, terutama bagian back-end.
+			3. database untuk buku dan user dicampur.
+
+-------------------------------------------
+
+Melakukan perubahaan struktur database (Cara Ketiga).
+
+Membuat database yang berbeda untuk buku dan user.
+
+database: Consums > username, email, fullname, id, password, image, userId.
+database: Ebooks > userId from userId, author from fullname, books = [{bab/chap/part:[{chap:1, title: LOREM, text/isi: dolor sit amet, idChap: randomNumber}], coverBuku:"tes.jpg", genres: "advanture action",idBuku: randomNumber}] 
+
+kekuranganL 1. Memiliki struktur yang sulit pada database Ebooks.
+			2. Sulit melakukan CRUD.
+
+
+--------------------------------------------
+Melakukan perubahan struktur database (cara Keempat).
+
+database: Consums > username, email, fullname, id, password, image/profile, userid.
+database: Ebooks > author from fullname, iduser/idauthor from userid, idbook, genres, title, cover.
+database: Chapter/Bab/Part > paragraf, idchapter, markid from idbook
