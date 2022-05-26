@@ -51,8 +51,7 @@ const filterFile = (req, file, cb) => {
 
 
 try {
-	 db.authenticate();
-	console.log("success Connect");
+	db.authenticate();
 }catch (error){
 	console.log("Terjadi error > ", error)
 }

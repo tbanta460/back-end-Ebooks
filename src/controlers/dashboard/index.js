@@ -34,7 +34,6 @@ exports.getBooksFromIdUser = async (req,res) => {
 	.catch(ValidationError => res.status(500).send({message: "Terjadi Kesalahan Pada Server", success: false}))
 }
 exports.createEbook = async (req,res) => {
-	// const getIdUser = req.params.iduser
 	const {title, genres, iduser, sinopsis} = req.body;
 	const getIdBook = new Date().getTime().toString();
 	let toArray;

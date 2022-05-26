@@ -71,7 +71,6 @@ exports.createChap = async (req,res) => {
 
 exports.dataChapters = async (req,res) => {
 	try{
-		console.log(new Date().getHours(), " ini adalah hasil",new Date(new Date() - 60 * 60 * 1000).getHours())
 		let restDataEbooks = await Ebooks.findAll();
 		let resDataChapters = await Chapters.findAll({
 			limit: 20,
@@ -139,26 +138,4 @@ exports.dataChapters = async (req,res) => {
 			success: false
 		})
 	}
-	// Chapters.findAll({
-	// 	limit:20,
-	// 	where:{
-	// 		createdAt: {
-	// 			[Op.lt]: new Date(new Date() - 60 * 60 * 1000),
-				
-	// 		}
-	// 	}
-	// })
-	// .then(data => {
-	// 	res.status(200).json({
-	// 		message: "Berhasil mengambil data chapters",
-	// 		data,
-	// 		success: true
-	// 	})
-	// })
-	// .catch(ValidationError => {
-	// 	res.status(500).send({
-	// 		message:"Terjadi Kesalahan Pada Server",
-	// 		success: false
-	// 	})
-	// })
 }

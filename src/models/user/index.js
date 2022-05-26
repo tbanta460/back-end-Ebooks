@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const db = require('../../../config/databse.js');
-// const {Users} = require('../../controlers/index.js');
 const { DataTypes } = Sequelize;
 
 

@@ -1,7 +1,4 @@
 require('dotenv').config();
-const {Consums} = require('../../models/index.js');
-const Sequelize = require('sequelize');
-const {Op} = require('sequelize');
 const jwt = require('jsonwebtoken');
 
 
@@ -44,7 +41,6 @@ exports.isCookies = async (req,res) => {
 }
 
 exports.removeCookies = async (req,res) => {
-	console.log('hello world')
 	res.clearCookie('refresh_token').end()
 	
 }

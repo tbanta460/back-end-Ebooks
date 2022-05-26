@@ -1,7 +1,7 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken')
 const { Op } = require('sequelize');
-const {Users, Consums} = require('../../models/index.js')
+const {Consums} = require('../../models/index.js')
 const bcrypt = require('bcryptjs')
 exports.getUser = async (req,res,next) => {
 	const {username, password} = req.body;
