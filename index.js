@@ -81,11 +81,11 @@ app.use((error, req, res, next) => {
 // Handle image
 
 // Route Handle
-
+const PORT = process_env_PORT || 5000
 app.use('/', userRoute);
 app.use('/', loginRoute);
 app.use('/', refreshTokenRoute);
 app.use('/', dashboardRoute);
 app.use('/', chapterRoute);
 app.use('/', myBooksRoute)
-app.listen(5000, () => console.log("Server RUn"))
+app.listen(PORT, () => console.log("Server RUn"))
