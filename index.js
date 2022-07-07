@@ -14,7 +14,7 @@ const chapterRoute = require('./src/routes/chapter.js');
 const myBooksRoute = require('./src/routes/mybooks.js');
 const refreshTokenRoute = require('./src/routes/refreshToken.js')
 const app = express();
-
+const port = process.env.PORT || 5000
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
   res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
@@ -28,6 +28,8 @@ const corsOptions ={
     credentials:true,           
     optionSuccessStatus:200
 }
+
+
 app.use(cors(corsOptions));
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -53,7 +55,7 @@ const filterFile = (req, file, cb) => {
 try {
 	db.authenticate();
 }catch (error){
-	console.log("Terjadi error > ", error)
+	console.log("Error", error)
 }
 
 app.use('/image', express.static(path.join(__dirname, 'image')))
@@ -81,11 +83,20 @@ app.use((error, req, res, next) => {
 // Handle image
 
 // Route Handle
-const PORT = process_env_PORT || 5000
+
 app.use('/', userRoute);
 app.use('/', loginRoute);
 app.use('/', refreshTokenRoute);
 app.use('/', dashboardRoute);
 app.use('/', chapterRoute);
 app.use('/', myBooksRoute)
-app.listen(PORT, () => console.log("Server RUn"))
+
+if(process.env.NODE_ENV === "production"){
+  app.use(express.static(path.join(__dirname, "build")));
+
+  // serve index.html from the build folder
+  app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build", "index.html"));
+  });
+}
+app.listen(port, () => console.log("Server Run"))

@@ -34,10 +34,10 @@ exports.getBooksFromIdUser = async (req,res) => {
 	.catch(ValidationError => res.status(500).send({message: "Terjadi Kesalahan Pada Server", success: false}))
 }
 exports.createEbook = async (req,res) => {
-	const {title, genres, iduser, sinopsis} = req.body;
+	const {title, genres, iduser, sinopsis, image} = req.body;
 	const getIdBook = new Date().getTime().toString();
 	let toArray;
-	
+	// req.file.path
 	if(Array.isArray(genres)){
 		toArray = genres;
 	}else{
@@ -50,7 +50,7 @@ exports.createEbook = async (req,res) => {
 	}).then(user => {
 		const objBook = {
 			title,
-			cover: req.file.path,
+			cover: image,
 			genres: toArray,
 			idbook:getIdBook,
 			sinopsis,
