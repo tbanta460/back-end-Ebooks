@@ -91,12 +91,5 @@ app.use('/', dashboardRoute);
 app.use('/', chapterRoute);
 app.use('/', myBooksRoute)
 
-if(process.env.NODE_ENV === "production"){
-  app.use(express.static(path.join(__dirname, "build")));
 
-  // serve index.html from the build folder
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build", "index.html"));
-  });
-}
 app.listen(port, () => console.log("Server Run"))
